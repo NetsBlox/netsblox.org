@@ -14,26 +14,29 @@ block content
     .row
       h2.text-center Learn more about NetsBlox
       .row
-        +box('How To\'s','/howtos','More')
+        +box('How To\'s', env.EDITOR_ADDRESS + "/docs/fundamentals/concepts.html", 'More')
           p Guides and tutorials to help you understand and use NetsBlox.
           .text-left
             ul
               li
-                a(href='/howtos/#rooms') Rooms
+                a(href=env.EDITOR_ADDRESS + '/docs/fundamentals/concepts.html#rooms') Rooms
               li
-                a(href='/howtos/#messages') Messages
+                a(href=env.EDITOR_ADDRESS + '/docs/fundamentals/concepts.html#messages') Messages
               li
-                a(href='/howtos/#services') Services (RPCs)
+                a(href=env.EDITOR_ADDRESS + '/docs/fundamentals/concepts.html#services-rpcs') Services (RPCs)
               li
-                a(href='/howtos/#manage-room') Managing rooms
+                a(href=env.EDITOR_ADDRESS + '/docs/fundamentals/howto.html#managing-rooms') Managing rooms
               li
-                a(href='/howtos/#send-messages') Sending and receiving messages
+                a(href=env.EDITOR_ADDRESS + '/docs/fundamentals/howto.html#sending-and-receiving-messages') Sending and receiving messages
               li
-                a(href='/howtos/#use-services') Using Services (RPCs)
+                a(href=env.EDITOR_ADDRESS + '/docs/fundamentals/howto.html#using-services-remote-procedure-calls') Using Services (RPCs)
               li
                 a(href='/mobile') Access on small screen devices
-        +box('QuickStart','/quickstart','Read More')
-          p Get started with playing multiplayer games on NetsBlox in no time.
+              li
+                a(href=env.EDITOR_ADDRESS + '/docs/fundamentals/howto.html#playing-multiplayer-games') Playing multiplayer games
+
+        +box('Documentation', env.EDITOR_ADDRESS + "/docs/", 'Read More')
+          p Check out the comprehensive documentation for NetsBlox including walkthroughs, documentation for all RPCs, custom deployment, and more!
 
         +box('Demos','/tutorials','View')
           p Check out walkthroughs and featured demos of Netsblox here.
