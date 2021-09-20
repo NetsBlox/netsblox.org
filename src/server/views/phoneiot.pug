@@ -9,9 +9,12 @@ block content
           iframe(class="embed-responsive-item", allowfullscreen="allowfullscreen", src= url)
 
   .container
+      +ytPlayer('https://www.youtube.com/embed/Or4zIiDn0m0')
+
       h2 IoT Education with PhoneIoT
       p
-        | PhoneIoT is a free mobile app for iOS and Android that allows you to
+        | PhoneIoT is a free mobile app for #[a(href='https://apps.apple.com/be/app/phoneiot/id1567444865#?platform=iphone') iOS]
+        | and #[a(href='https://play.google.com/store/apps/details?id=org.netsblox.phoneiot') Android] that allows you to
         | connect your device to NetsBlox and access its sensors and display
         | from your NetsBlox projects. This enables students to create things like tilting controls
         | for a game (accelerometer), tracking your device's position on a map (location),
@@ -25,9 +28,7 @@ block content
         | After installing the app on your device and pressing "Connect" in the app,
         | PhoneIoT has very little setup to getting started: you simply need to enter
         | the "Device ID" from the app menu into your project to connect to the device
-        | from NetsBlox with the 
-        a(href='https://editor.netsblox.org/docs/services/PhoneIoT/index.html' target='_blank') PhoneIoT service
-        | .
+        | from NetsBlox with the #[a(href='https://editor.netsblox.org/docs/services/PhoneIoT/index.html') PhoneIoT service].
       p
         | PhoneIoT provides two main ways of interacting with both the sensors and display:
         | explicit requests (using normal NetsBlox RPC return values), and event-based "streaming"
@@ -36,7 +37,9 @@ block content
         | aims to teach students the use cases of live data streaming and event-driven
         | communication, both of which are common paradigms in industrial IoT applications.
 
-      +ytPlayer('https://www.youtube.com/embed/oRWda9jT_c8')
+      .container(style='text-align: center')
+        img(src='images/phoneiot/fitness.jpg', style='width: 300px; padding: 25px' alt='Fitness tracker project screenshot')
+        img(src='images/phoneiot/with-controls.jpg', style='width: 300px; padding: 25px' alt='PhoneIoT device with custom controls')
 
       h3 Examples and Project Walkthroughs
 
@@ -45,6 +48,8 @@ block content
       | including some student projects to teach targeted concepts.
       | Any video resources that start with a non-empty project will have a link
       | in the description to the starter code.
+      br
+      br
 
       ol
         li
