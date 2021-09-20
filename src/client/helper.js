@@ -25,7 +25,7 @@ function json2Card(project){
       <div class="card-container">
         <div class="card">
           <div class="front">
-            <div class="cover"><img src="${project.thumbnail}"></div>
+            <div class="cover"><img src="${SERVER_ADDRESS}${project.Thumbnail.substring(1)}"></div>
             <div class="user hidden"><img class="img-circle" src="HERE"></div>
             <div class="content">
               <div class="main">
@@ -68,7 +68,7 @@ let json2MobileEl = project => {
   return `<div class="col-lg-2 col-md-3 col-sm-4">
   <div class="h-thumbnail">
     <a href="${SERVER_ADDRESS}?action=private&ProjectName=${project.ProjectName}">
-      <img class="img-responsive center-block img-thumbnail" alt="" src="${project.Thumbnail}" style="width: 100%;"/>
+      <img class="img-responsive center-block img-thumbnail" alt="" src="${SERVER_ADDRESS}${project.Thumbnail.substring(1)}" style="width: 100%;"/>
     </a>
       <ul class="list-group">
       <span class="label label-success"></span>
