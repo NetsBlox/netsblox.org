@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/NetsBlox/netsblox.org",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.21.2",
     "babel-preset-es2015": "^6.24.1",
     "body-parser": "^1.18.3",
     "cache-manager": "^2.9.0",
