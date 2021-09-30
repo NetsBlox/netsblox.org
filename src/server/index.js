@@ -49,17 +49,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /**********************************************************************************************************/
 
 
+const https = require('https');
+const agent = new https.Agent({rejectUnauthorized: false});
 let getPublicProjects = memoize(() => {
     log.debug('Calling server for public projects');
     return axios({
+        httpsAgent: agent,
         method: 'GET',
         url: SERVER_ADDRESS +'/api/Projects/PROJECTS'
     });
-},{promise: true, maxAge: 86400  });
+}, {promise: true, maxAge: 86400 });
 
 let getExamples = memoize(() => {
     log.debug('Calling server for example projects');
     return axios({
+        httpsAgent: agent,
         url: SERVER_ADDRESS + '/api/Examples/EXAMPLES?metadata=true',
         method: 'get'
     });
