@@ -1,0 +1,41 @@
+extends includes/layout.pug
+block title
+  title PyBlox
+block content
+  mixin ytPlayer(url, title)
+    .panel.panel-default.youtube
+      .panel-body
+        .embed-responsive.embed-responsive-16by9
+          iframe(class="embed-responsive-item", allowfullscreen="allowfullscreen", src= url)
+
+  .container
+      +ytPlayer('https://www.youtube.com/embed/tSjbu90GhHM')
+
+      h2 Continued NetsBlox Education in Python
+      p
+        | NetsBlox has been shown to be effective at teaching advanced Computer Science (CS)
+        | concepts such distributed computing, robotics, cybersecurity,
+        | and the internet of things in ways which are attainable to novice programmers.
+        | However, despite its power, there are some students who may be put off by the
+        | block-based programming environment that NetsBlox provides for accessing these features.
+        | Unfortunately, this can lead to students abandoning NetsBlox in favor of textual languages,
+        | which typically over-complicate access to these advanced CS concepts,
+        | and can ultimately lead to students actually losing knowledge from the transition.
+        | To remedy this, we introduce PyBlox, a Python analogue of NetsBlox.
+      p
+        | PyBlox is a free and open-source tool that allows students to transfer
+        | their existing NetsBlox knowledge into #[a(href='https://www.python.org/') Python].
+        | This includes access to the basic, graphical features of NetsBlox, as well as all
+        | existing NetsBlox web services and message passing between projects over the internet.
+      p
+        | PyBlox is a native tool, meaning it must be installed on your computer,
+        | and does not run through the browser like NetsBlox does.
+        | The reason for this is that PyBlox gives users the full, unlimited power of Python,
+        | rather than a subset that can run in isolation in a web browser.
+        | Because of this, any Python knowledge learned through PyBlox is applicable to real-world Python development.
+      p
+        | Instructions about how to install and use PyBlox are provided on the #[a(href='https://pypi.org/project/netsblox/') Python Package Index].
+
+      h3 References
+      ul
+        li "Low-Friction Transition from Blocks to Python," General Proceedings of the 2nd ISLS Annual Meeting, 2022, p. 48-51. #[a(href='https://2022.isls.org/proceedings/') link]

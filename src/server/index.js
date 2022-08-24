@@ -114,6 +114,7 @@ app.get('/csta18', (req,res) => renderView(res, 'csta18.pug'));
 app.get('/cybersecurity', (req,res) => renderView(res, 'roboscape.pug'));
 app.get('/roboscape', (req,res) => res.redirect('/cybersecurity'));
 app.get('/phoneiot', (req,res) => renderView(res, 'phoneiot.pug'));
+app.get('/pyblox', (req,res) => renderView(res, 'pyblox.pug'));
 
 // 2019 camp files
 app.get('/camp2019/netsblox', (req,res) => renderView(res, 'camp2019/netsblox.pug'));
