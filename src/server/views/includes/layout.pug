@@ -14,6 +14,8 @@ html
     meta(name="msapplication-config" content="/browserconfig.xml")
     meta(name='description', content='NetsBlox is a visual programming language and cloud-based environment that enables novice programmers to create networked programs such as multi-player games.')
   body
+    script.
+      var CLOUD_ADDRESS = "#{env.CLOUD_ADDRESS}"
     include navbar.pug    
     #main-content
       block content

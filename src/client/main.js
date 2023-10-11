@@ -1,10 +1,10 @@
-/* global $, loadedImages, Cookies, AuthHandler*/
+/* global $, loadedImages, Cookies, CLOUD_ADDRESS */
 /* jshint esversion: 6 */
 
-const SERVER_ADDRESS = document.getElementById("editor").href;
+const SERVER_ADDRESS = document.getElementById("editor").href.replace(/\/$/, '');
 // setup netsblox authenticator
 const Cloud = require("./cloud");
-const auth = new Cloud(SERVER_ADDRESS);
+let cloud;
 const json2MobileEl = require("./helper");
 // helper disable project links on mobile
 
@@ -17,7 +17,7 @@ var alertMobileMode = () => {
   let projectLinks = document.querySelectorAll('a[href*="ProjectName="');
 
   projectLinks.forEach((a) => {
-    a.addEventListener("click", (e) => {
+    a.addEventListener("click", (_e) => {
       alert(
         'For a better experience install the "NetsBlox Player" app from your app store. Visit /mobile for more info',
       );
@@ -59,7 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-$(document).ready(function () {
+window.onload = async function () {
+  console.log('page is ready')
   var $grid = $("#examples-grid");
   var $pSlider = $("#projects-slider");
 
@@ -163,15 +164,29 @@ $(document).ready(function () {
   //  });
 
   // determine if logged in
-  let user = Cookies.get("username");
-  if (user !== undefined) {
+  // FIXME: if we allow CORS for the cloud.txt file, we can just use that
+  //const response = await fetch(SERVER_ADDRESS + '/cloud.txt');
+  //const cloudUrl = response.ok ? await response.text() : 'https://cloud.netsblox.org';
+  const cloudUrl = window.CLOUD_ADDRESS || 'https://cloud.netsblox.org';
+  const opts = {
+    credentials: 'include',
+    headers: {'Content-Type': 'application/json'}
+  };
+  const configResponse = await fetch(cloudUrl + '/configuration', opts);
+  let username;
+  if (configResponse.ok) {
+    const config = await configResponse.json();
+    username = config.username;
+  }
+  cloud = new Cloud(cloudUrl, null, username);
+  if (cloud.username) {
     updateLoginViews(true);
   }
 
   //logout
   $("#logout").on("click", (e) => {
     e.preventDefault();
-    auth.logout()
+    cloud.logout()
       .then(() => {
         document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
         console.log("logged out");
@@ -197,40 +212,14 @@ $(document).ready(function () {
   });
 
   $("#back-to-top").tooltip("show");
-}); // end of document ready func
-
-$("form").submit(function (e) {
-  e.preventDefault();
-  let username = $('input[name="username"]').val();
-  let password = $('input[name="password"]').val();
-  if (!username || !password) {
-    alert("Fill in your username and password");
-    return;
-  }
-  $('input[name="password"]').val("");
-
-  auth.login(username, password)
-    .then(() => {
-      console.log("logged in");
-      postLogin();
-    })
-    .catch((err) => {
-      alert(err.request.responseText);
-      console.log("failed to log in", err);
-    });
-
-  function postLogin() {
-    Cookies.set("username", username);
-    updateLoginViews(true);
-  }
-}); // end of on submit
+};
 
 function updateLoginViews(isLoggedIn) {
   //use toggle?
   if (isLoggedIn) {
     $("#login").addClass("hidden");
     $("#logout").removeClass("hidden");
-    $("nav p").removeClass("hidden").find("b").text(Cookies.get("username"));
+    $("nav p").removeClass("hidden").find("b").text(cloud.username);
     $("#login-modal").modal("hide");
     if (isMainPage()) grabUserProjects();
   } else { //means we are logging out
@@ -243,22 +232,17 @@ function updateLoginViews(isLoggedIn) {
   }
 }
 
-function grabUserProjects() {
+async function grabUserProjects() {
   $("#userProjects-grid").find(".row").empty();
-  $.ajax({
-    url: SERVER_ADDRESS + "api/getProjectList?format=json",
-    method: "GET",
-    xhrFields: {
-      withCredentials: true,
-    },
-    crossDomain: true,
+  const projects = await cloud.getProjectList();
+  projects
+    .map(project => ({
+      name: project.name,
+      thumbnail: `${cloud.url}/projects/id/${project.id}/thumbnail?aspectRatio=1.33333`
+    }))
+    .forEach((proj) => {
+      $("#userProjects-grid").find(".row").append(json2MobileEl(proj));
+    });
 
-    success: (data) => {
-      console.log("grabbed user projects", data);
-      data.forEach((proj) => {
-        $("#userProjects-grid").find(".row").append(json2MobileEl(proj));
-      });
-      $("#userProjects-grid").removeClass("hidden");
-    },
-  });
+  $("#userProjects-grid").removeClass("hidden");
 }
