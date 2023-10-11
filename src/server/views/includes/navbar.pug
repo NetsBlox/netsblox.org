@@ -41,7 +41,7 @@ nav.navbar.navbar-inverse
 
       ul.nav.navbar-nav.navbar-right
         li
-          a(href='', title="login", id="login" data-toggle='modal', data-target='#login-modal', onClick="document.querySelector('form input').focus();")
+          a(href=env.LOGIN_ADDRESS + '?redirect=https://netsblox.org', title="login", id="login" )
             i.fa.fa-sign-in
         li
           button(id="logout", class="hidden", title="logout")
