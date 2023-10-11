@@ -12,7 +12,8 @@ const path      = require('path'),
 
 const PORT = process.env.PORT || 8000;
 const NODE_ENV = process.env.NODE_ENV || 'dev';
-const SERVER_ADDRESS = process.env.EDITOR_ADDRESS || 'https://editor.netsblox.org';
+const EDITOR_ADDRESS = process.env.EDITOR_ADDRESS || 'https://editor.netsblox.org';
+const SERVER_ADDRESS = process.env.SERVER_ADDRESS || 'https://netsblox.org';
 const CLOUD_ADDRESS = process.env.CLOUD_ADDRESS || 'https://cloud.netsblox.org';
 /**********************************************************************************************************/
 
@@ -62,11 +63,20 @@ let getPublicProjects = memoize(() => {
     });
 }, {promise: true, maxAge: 86400 });
 
-let getExamples = memoize(async (names) => {
+let getExamples = memoize(async (skipNames) => {
     log.debug('Calling server for example projects');
+    const response = await axios({
+        httpsAgent: agent,
+        method: 'GET',
+        url: EDITOR_ADDRESS +'/Examples/EXAMPLES'
+    });
+    const names = response.data.split('\n')
+        .map(line => line.split('\t').pop())
+        .filter(name => !skipNames.includes(name));
+
     const examples = await Promise.all(names
       .map(async name => {
-        const url = SERVER_ADDRESS + '/Examples/' + name + '.xml';
+        const url = EDITOR_ADDRESS + '/Examples/' + name + '.xml';
         const response = await axios({
             httpsAgent: agent,
             url,
@@ -174,7 +184,7 @@ app.get('/camp2019/brute-force', (req,res) => renderView(res, 'camp2019/brute-fo
 app.get('/camp2019/insecure-key-exchange', (req,res) => renderView(res, 'camp2019/insecure-key-exchange.pug'));
 app.get('/camp2019/replay-attack', (req,res) => renderView(res, 'camp2019/replay-attack.pug'));
 
-app.get('/privacy.html', (req, res) => res.redirect(SERVER_ADDRESS + '/privacy.html'));
+app.get('/privacy.html', (req, res) => res.redirect(EDITOR_ADDRESS + '/privacy.html'));
 app.get('/emailus', (req, res) => res.redirect('mailto:akos.ledeczi@vanderbilt.edu'));
 
 app.get('*', (req,res)=>{
