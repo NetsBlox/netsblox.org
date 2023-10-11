@@ -12,7 +12,8 @@ const path      = require('path'),
 
 const PORT = process.env.PORT || 8000;
 const NODE_ENV = process.env.NODE_ENV || 'dev';
-const SERVER_ADDRESS = process.env.EDITOR_ADDRESS;
+const SERVER_ADDRESS = process.env.EDITOR_ADDRESS || 'https://editor.netsblox.org';
+const CLOUD_ADDRESS = process.env.CLOUD_ADDRESS || 'https://cloud.netsblox.org';
 /**********************************************************************************************************/
 
 // Setup our Express pipeline
@@ -53,10 +54,11 @@ const https = require('https');
 const agent = new https.Agent({rejectUnauthorized: false});
 let getPublicProjects = memoize(() => {
     log.debug('Calling server for public projects');
+    // TODO: a temporary hack for showing highlighted projects
     return axios({
         httpsAgent: agent,
         method: 'GET',
-        url: SERVER_ADDRESS +'/api/Projects/PROJECTS'
+        url: CLOUD_ADDRESS +'/projects/user/ledeczi'
     });
 }, {promise: true, maxAge: 86400 });
 
@@ -64,12 +66,12 @@ let getExamples = memoize(() => {
     log.debug('Calling server for example projects');
     return axios({
         httpsAgent: agent,
-        url: SERVER_ADDRESS + '/api/Examples/EXAMPLES?metadata=true',
+        url: SERVER_ADDRESS + '/Examples/EXAMPLES',
         method: 'get'
     });
 }, {promise: true, maxAge: 86400 });
 
-app.get('/', (req, res) => {
+app.get('/', async (_req, res) => {
 
     // set caching headers
     res.set({
@@ -77,23 +79,29 @@ app.get('/', (req, res) => {
     });
 
     // get the examples and public projects data
-    // get examples data
-    let examplesPromise = getExamples();
-    // get projects data
-    let publicProjectsPromise = getPublicProjects();
-    // end of calls to get the data
+    try {
+        let examples = {data: []};//await getExamples();
+        let projectsData = await getPublicProjects();
 
-    axios.all([examplesPromise,publicProjectsPromise]).then(axios.spread((examples,projects)=>{
-        log.debug('Data received from server',projects.data.length);
-        // this is cached by default by express if node env is set to production
-        examples.data = examples.data.filter(eg => !['Weather','Star Map','Battleship','Earthquakes'].includes(eg.projectName));
-        res.render('index.pug', {examples: examples.data, projects: projects.data });
-    })).catch((err)=>{
-    //handle errors
+        log.debug('Data received from server',projectsData.data.length);
+
+        // FIXME: use the actual examples
+
+        // FIXME: add the examples back
+      const projects = projectsData.data.map(project => ({
+        owner: project.owner,
+        name: project.name,
+      // TODO: add the description
+        thumbnail: `${CLOUD_ADDRESS}/projects/id/${project.id}/thumbnail`,
+        roleNames: Object.values(project.roles).map(r => r.name),
+      }));
+
+        //const examples = projects.filter(eg => !['Weather','Star Map','Battleship','Earthquakes'].includes(eg.name));
+        res.render('index.pug', {examples: [], projects });
+    } catch (err) {
         log.debug('Failed to get projects data from netsblox server.',err);
         res.status(500).send();
-    });
-
+    }
 });
 
 function renderView(res, path) {
