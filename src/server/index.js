@@ -111,6 +111,7 @@ app.get('/', async (_req, res) => {
       const projects = projectsData.data.map(project => ({
         owner: project.owner,
         name: project.name,
+        notes: 'Click to open in NetsBlox!',
         // TODO: add the description
         thumbnail: `${CLOUD_ADDRESS}/projects/id/${project.id}/thumbnail`,
         roleNames: Object.values(project.roles).map(r => r.name),
