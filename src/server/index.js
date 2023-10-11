@@ -55,11 +55,10 @@ const https = require('https');
 const agent = new https.Agent({rejectUnauthorized: false});
 let getPublicProjects = memoize(() => {
     log.debug('Calling server for public projects');
-    // TODO: a temporary hack for showing highlighted projects
     return axios({
         httpsAgent: agent,
         method: 'GET',
-        url: CLOUD_ADDRESS +'/projects/user/ledeczi'
+        url: CLOUD_ADDRESS +'/projects/public/'
     });
 }, {promise: true, maxAge: 86400 });
 
