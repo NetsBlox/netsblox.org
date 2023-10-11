@@ -1,11 +1,10 @@
-h4.text-center Undergoing Maintenance. Example projects will be back soon!
-h3.text-center(style="display: none") Examples &amp; Services
+h3.text-center Examples &amp; Services
 //- .btn-group-wrap
 //-   .btn-group.button-group.filter-button-group(class='style=')
 //-     button.btn.btn-info(data-filter='*') Show all
 //-     button.btn.btn-info(data-filter='.staticmap') Map
 //-     button.btn.btn-info.active(data-filter='.featured') Featured
-.row(style="display: none") Examples &amp; Services
+.row
   .col-sm-4.col-sm-offset-4.col-lg-2.col-lg-offset-5
     .form-group
       input(type='text',class='form-control quicksearch',placeholder='Search')
@@ -23,16 +22,16 @@ script.
 #examples-grid.clearfix.hidden
   .grid-sizer.col-xs-12.col-sm-4.col-md-3.col-lg-2
   each eg in examples
-    a(class="wrapper-link",href= env.EDITOR_ADDRESS+'/?action=example&ProjectName='+eg.projectName + '&editMode=true', target='_blank')
+    a(class="wrapper-link",href= env.EDITOR_ADDRESS+'/?action=example&ProjectName='+eg.name+ '&editMode=true', target='_blank')
       .element-item.col-xs-12.col-sm-4.col-md-3.col-lg-2
         .h-thumbnail
           .img-container
-            img.img-responsive.lazy.center-block.img-thumbnail(src='images/placeholder.jpg', data-src= `${env.EDITOR_ADDRESS}/api/examples/${eg.projectName}/thumbnail?aspectRatio=1.33333`, onload="loadedImages++", style='width: 100%;')
+            img.img-responsive.lazy.center-block.img-thumbnail(src='images/placeholder.jpg', data-src= `${eg.thumbnail}`, onload="loadedImages++", style='width: 100%;')
             .overlay
               .caption.text-center= eg.notes || 'No description provided.'
           ul.list-group
             span.label.label-success= eg.services[0]
             li.list-group-item.title
-              b(title= eg.projectName)= eg.projectName
+              b(title= eg.name)= eg.name
               if eg.roleNames.length > 1
                 i.fa.fa-users.pull-right(title="Multiplayer")

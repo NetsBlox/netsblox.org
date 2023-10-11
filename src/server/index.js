@@ -62,13 +62,27 @@ let getPublicProjects = memoize(() => {
     });
 }, {promise: true, maxAge: 86400 });
 
-let getExamples = memoize(() => {
+let getExamples = memoize(async (names) => {
     log.debug('Calling server for example projects');
-    return axios({
-        httpsAgent: agent,
-        url: SERVER_ADDRESS + '/Examples/EXAMPLES',
-        method: 'get'
-    });
+    const examples = await Promise.all(names
+      .map(async name => {
+        const url = SERVER_ADDRESS + '/Examples/' + name + '.xml';
+        const response = await axios({
+            httpsAgent: agent,
+            url,
+            method: 'get'
+        });
+        const src = response.data;
+        return {
+            name,
+            notes: extractNotes(src),
+            services: extractServices(src),
+            roleNames: extractRoleNames(src),
+            thumbnail: `${CLOUD_ADDRESS}/projects/thumbnail?url=${encodeURIComponent(url)}&aspectRatio=1.33333`
+        };
+      })
+    );
+    return examples;
 }, {promise: true, maxAge: 86400 });
 
 app.get('/', async (_req, res) => {
@@ -80,24 +94,20 @@ app.get('/', async (_req, res) => {
 
     // get the examples and public projects data
     try {
-        let examples = {data: []};//await getExamples();
+        let examples = await getExamples(['Weather','Star Map','Battleship','Earthquakes']);
         let projectsData = await getPublicProjects();
 
         log.debug('Data received from server',projectsData.data.length);
 
-        // FIXME: use the actual examples
-
-        // FIXME: add the examples back
       const projects = projectsData.data.map(project => ({
         owner: project.owner,
         name: project.name,
-      // TODO: add the description
+        // TODO: add the description
         thumbnail: `${CLOUD_ADDRESS}/projects/id/${project.id}/thumbnail`,
         roleNames: Object.values(project.roles).map(r => r.name),
       }));
 
-        //const examples = projects.filter(eg => !['Weather','Star Map','Battleship','Earthquakes'].includes(eg.name));
-        res.render('index.pug', {examples: [], projects });
+        res.render('index.pug', {examples, projects });
     } catch (err) {
         log.debug('Failed to get projects data from netsblox server.',err);
         res.status(500).send();
@@ -109,6 +119,36 @@ function renderView(res, path) {
         'Cache-Control': 'public, max-age=3600',
     });
     return res.render(path, {});
+}
+
+function extractServices(projectXml){
+    let services = [];
+    let foundRpcs = projectXml.match(/getJSFromRPCStruct"><l>([a-zA-Z\-_0-9]+)<\/l>/g);
+    if (foundRpcs) {
+        foundRpcs.forEach(txt=>{
+            let match = txt.match(/getJSFromRPCStruct"><l>([a-zA-Z\-_0-9]+)<\/l>/);
+            services.push(match[1]);
+        });
+    }
+    return services;
+};
+
+function extractNotes(projectXml){
+    const notes = projectXml.split('<notes>')[1].split('</notes>').shift();
+    return notes;
+};
+
+function extractRoleNames(projectXml) {
+    let start = projectXml.indexOf('<role name="');
+    const names = [];
+    while (start > -1) {
+      const end = projectXml.indexOf('">', start);
+      const name = projectXml.substring(start, end);
+      names.push(name);
+      projectXml = projectXml.substring(end);
+      start = projectXml.indexOf('<role name="');
+    }
+    return names;
 }
 
 app.get('/tutorials*', (req,res) => renderView(res, 'tutorials.pug'));
