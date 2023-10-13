@@ -107,12 +107,14 @@ app.get('/', async (_req, res) => {
 
     // get the examples and public projects data
     try {
-        let examples = await getExamples(['Weather','Star Map','Battleship','Earthquakes']);
-        let projectsData = await getPublicProjects();
+        let [examples, projectsData] = await Promise.all([
+            getExamples(['Weather','Star Map','Battleship','Earthquakes']),
+            getPublicProjects(),
+        ]);
 
-        log.debug('Data received from server',projectsData.data.length);
+        log.debug('Data received from server',projectsData.length);
 
-      const projects = projectsData.data.map(project => ({
+      const projects = projectsData.map(project => ({
         owner: project.owner,
         name: project.name,
         notes: 'Click to open in NetsBlox!',
