@@ -70,22 +70,7 @@ block content
       .element-item.col-xs-12.col-sm-4.col-md-3
         .h-thumbnail
           .img-container
-            img.img-responsive.center-block.img-thumbnail(src= `${env.EDITOR_ADDRESS}/api/examples/${name}/thumbnail?aspectRatio=1.33333`, style='width: 100%;')
-            .overlay
-              .caption.text-center= description
-          ul.list-group
-            //- span.label.label-success SERVICES
-            li.list-group-item.title
-              b= name
-              if isMultiplayer
-                i.fa.fa-lg.fa-users.pull-right(title="Multiplayer")
-
-  mixin featuredProject(owner, name, description, isMultiplayer=false)
-    a(class="wrapper-link",href= env.EDITOR_ADDRESS+'/?action=present&Username=' + owner + '&ProjectName=' + name + '&editMode=true', target='_blank')
-      .element-item.col-xs-12.col-sm-4.col-md-3
-        .h-thumbnail
-          .img-container
-            img.img-responsive.center-block.img-thumbnail(src= `${env.EDITOR_ADDRESS}/api/projects/${owner}/${name}/thumbnail?aspectRatio=1.33333`, style='width: 100%;')
+            img.img-responsive.center-block.img-thumbnail(src= `${env.CLOUD_ADDRESS}/projects/thumbnail?url=${encodeURIComponent(env.EDITOR_ADDRESS + '/Examples/' + name + '.xml')}&aspectRatio=1.33333`, style='width: 100%;')
             .overlay
               .caption.text-center= description
           ul.list-group
@@ -103,7 +88,7 @@ block content
       +featuredExample('StreetViewMap','Navigate around the Earth with Google Maps. Click for street view. Use arrow keys and +/- to look around.', false)
       +featuredExample('Star Map','Navigate the sky with the Sloan Digital Sky Survey! Use the on-screen buttons or the arrow keys to move around. Press SPACE for a new cool place to explore! Press F to search for galaxies and nebulae by name.',false)
       +featuredExample('CastShow','Type in your favorite movie title to see the three leading cast members',false)
-      +featuredProject('ledeczi', 'COVID-19Daily', 'View the latest COVID-19 data worldwide using data from Johns Hopkins University. Use the arrow keys to move around and click to view plotted COVID data.')
+      +featuredExample('COVID-19Daily', 'View the latest COVID-19 data worldwide using data from Johns Hopkins University. Use the arrow keys to move around and click to view plotted COVID data.', false)
     #userProjects-grid.hidden.text-center
       h3 My Projects
       .row

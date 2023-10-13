@@ -12,7 +12,11 @@ const path      = require('path'),
 
 const PORT = process.env.PORT || 8000;
 const NODE_ENV = process.env.NODE_ENV || 'dev';
-const SERVER_ADDRESS = process.env.EDITOR_ADDRESS;
+
+process.env.EDITOR_ADDRESS = process.env.EDITOR_ADDRESS|| 'https://editor.netsblox.org';
+process.env.SERVER_ADDRESS = process.env.SERVER_ADDRESS|| 'https://netsblox.org';
+process.env.CLOUD_ADDRESS = process.env.CLOUD_ADDRESS|| 'https://cloud.netsblox.org';
+const { EDITOR_ADDRESS, CLOUD_ADDRESS, SERVER_ADDRESS } = process.env;
 /**********************************************************************************************************/
 
 // Setup our Express pipeline
@@ -51,25 +55,50 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const https = require('https');
 const agent = new https.Agent({rejectUnauthorized: false});
-let getPublicProjects = memoize(() => {
+let getPublicProjects = memoize(async () => {
     log.debug('Calling server for public projects');
-    return axios({
+    const response = await axios({
         httpsAgent: agent,
         method: 'GET',
-        url: SERVER_ADDRESS +'/api/Projects/PROJECTS'
+        url: CLOUD_ADDRESS +'/projects/user/ledeczi'
     });
+    const projects = response.data.filter(project => project.state === 'Public');
+    return projects.slice(0, 25);
 }, {promise: true, maxAge: 86400 });
 
-let getExamples = memoize(() => {
+let getExamples = memoize(async (skipNames) => {
     log.debug('Calling server for example projects');
-    return axios({
+    const response = await axios({
         httpsAgent: agent,
-        url: SERVER_ADDRESS + '/api/Examples/EXAMPLES?metadata=true',
-        method: 'get'
+        method: 'GET',
+        url: EDITOR_ADDRESS +'/Examples/EXAMPLES'
     });
+    const names = response.data.split('\n')
+        .map(line => line.split('\t').pop())
+        .filter(name => !skipNames.includes(name));
+
+    const examples = await Promise.all(names
+      .map(async name => {
+        const url = EDITOR_ADDRESS + '/Examples/' + name + '.xml';
+        const response = await axios({
+            httpsAgent: agent,
+            url,
+            method: 'get'
+        });
+        const src = response.data;
+        return {
+            name,
+            notes: extractNotes(src),
+            services: extractServices(src),
+            roleNames: extractRoleNames(src),
+            thumbnail: `${CLOUD_ADDRESS}/projects/thumbnail?url=${encodeURIComponent(url)}&aspectRatio=1.33333`
+        };
+      })
+    );
+    return examples;
 }, {promise: true, maxAge: 86400 });
 
-app.get('/', (req, res) => {
+app.get('/', async (_req, res) => {
 
     // set caching headers
     res.set({
@@ -77,23 +106,28 @@ app.get('/', (req, res) => {
     });
 
     // get the examples and public projects data
-    // get examples data
-    let examplesPromise = getExamples();
-    // get projects data
-    let publicProjectsPromise = getPublicProjects();
-    // end of calls to get the data
+    try {
+        let [examples, projectsData] = await Promise.all([
+            getExamples(['Weather','Star Map','Battleship','Earthquakes']),
+            getPublicProjects(),
+        ]);
 
-    axios.all([examplesPromise,publicProjectsPromise]).then(axios.spread((examples,projects)=>{
-        log.debug('Data received from server',projects.data.length);
-        // this is cached by default by express if node env is set to production
-        examples.data = examples.data.filter(eg => !['Weather','Star Map','Battleship','Earthquakes'].includes(eg.projectName));
-        res.render('index.pug', {examples: examples.data, projects: projects.data });
-    })).catch((err)=>{
-    //handle errors
+        log.debug('Data received from server',projectsData.length);
+
+      const projects = projectsData.map(project => ({
+        owner: project.owner,
+        name: project.name,
+        notes: 'Click to open in NetsBlox!',
+        // TODO: add the description
+        thumbnail: `${CLOUD_ADDRESS}/projects/id/${project.id}/thumbnail`,
+        roleNames: Object.values(project.roles).map(r => r.name),
+      }));
+
+        res.render('index.pug', {examples, projects });
+    } catch (err) {
         log.debug('Failed to get projects data from netsblox server.',err);
         res.status(500).send();
-    });
-
+    }
 });
 
 function renderView(res, path) {
@@ -101,6 +135,36 @@ function renderView(res, path) {
         'Cache-Control': 'public, max-age=3600',
     });
     return res.render(path, {});
+}
+
+function extractServices(projectXml){
+    let services = [];
+    let foundRpcs = projectXml.match(/getJSFromRPCStruct"><l>([a-zA-Z\-_0-9]+)<\/l>/g);
+    if (foundRpcs) {
+        foundRpcs.forEach(txt=>{
+            let match = txt.match(/getJSFromRPCStruct"><l>([a-zA-Z\-_0-9]+)<\/l>/);
+            services.push(match[1]);
+        });
+    }
+    return services;
+};
+
+function extractNotes(projectXml){
+    const notes = projectXml.split('<notes>')[1].split('</notes>').shift();
+    return notes;
+};
+
+function extractRoleNames(projectXml) {
+    let start = projectXml.indexOf('<role name="');
+    const names = [];
+    while (start > -1) {
+      const end = projectXml.indexOf('">', start);
+      const name = projectXml.substring(start, end);
+      names.push(name);
+      projectXml = projectXml.substring(end);
+      start = projectXml.indexOf('<role name="');
+    }
+    return names;
 }
 
 app.get('/tutorials*', (req,res) => renderView(res, 'tutorials.pug'));
@@ -126,7 +190,7 @@ app.get('/camp2019/brute-force', (req,res) => renderView(res, 'camp2019/brute-fo
 app.get('/camp2019/insecure-key-exchange', (req,res) => renderView(res, 'camp2019/insecure-key-exchange.pug'));
 app.get('/camp2019/replay-attack', (req,res) => renderView(res, 'camp2019/replay-attack.pug'));
 
-app.get('/privacy.html', (req, res) => res.redirect(SERVER_ADDRESS + '/privacy.html'));
+app.get('/privacy.html', (req, res) => res.redirect(EDITOR_ADDRESS + '/privacy.html'));
 app.get('/emailus', (req, res) => res.redirect('mailto:akos.ledeczi@vanderbilt.edu'));
 
 app.get('*', (req,res)=>{

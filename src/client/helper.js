@@ -1,25 +1,29 @@
 // helper functions for some UI operations
-const SERVER_ADDRESS = document.getElementById('editor').href;
+const EDITOR_ADDRESS = document.getElementById("editor").href;
 //create an html element based on a project obj
-function json2Proj(project, classes=''){
-  project.category = ['max','even','featured'][Math.floor(Math.random() * 3)];
-  let popover = project.notes !== '' ? `data-toggle="popover" data-trigger="hover" data-placement="bottom" title="${project.primaryRoleName}" data-content="${project.notes}"` : ''
+function json2Proj(project, classes = "") {
+  project.category = ["max", "even", "featured"][Math.floor(Math.random() * 3)];
+  let popover = project.notes !== ""
+    ? `data-toggle="popover" data-trigger="hover" data-placement="bottom" title="${project.primaryRoleName}" data-content="${project.notes}"`
+    : "";
   return `<div class="prj-element element-item ${project.category} ${classes}">
                 <a href="${serverAdr}/#present:Username=${project.owner}&ProjectName=${project.projectName}" target="_blank" ${popover}>
                 <div class="thumbnail">
                   <img src="${project.thumbnail}" alt="NetsBlox Project: ${project.projectName}">
                   <div class="caption text-center">
                     <h4>${project.projectName}</h4>
-                    <small>${project.services.length > 0 ? 'Using: ' + project.services.join(' ') : ''} </small>
+                    <small>${
+    project.services.length > 0 ? "Using: " + project.services.join(" ") : ""
+  } </small>
 
                   </div>
                   </div>
                 </div>
                 </a>
-              </div>`
-};;
+              </div>`;
+}
 //create html card based on project obj
-function json2Card(project){
+function json2Card(project) {
   return `
     <div class="element-item col-xs-12 col-sm-6 col-md-4 col-lg-3">
       <div class="card-container">
@@ -59,23 +63,21 @@ function json2Card(project){
           </div>
         </div>
       </div>
-    </div>`
-};
+    </div>`;
+}
 
-
-
-let json2MobileEl = project => {
+let json2MobileEl = (project) => {
   return `<div class="col-lg-2 col-md-3 col-sm-4">
   <div class="h-thumbnail">
-    <a href="${SERVER_ADDRESS}?action=private&ProjectName=${project.ProjectName}">
-      <img class="img-responsive center-block img-thumbnail" alt="" src="${project.Thumbnail}" style="width: 100%;"/>
+    <a href="${EDITOR_ADDRESS}?action=private&ProjectName=${project.name}&editMode&noRun">
+      <img class="img-responsive center-block img-thumbnail" alt="" src="${project.thumbnail}" style="width: 100%;"/>
     </a>
       <ul class="list-group">
       <span class="label label-success"></span>
-        <li class="list-group-item title">${project.ProjectName}</li>
+        <li class="list-group-item title">${project.name}</li>
       </ul>
   </div>
-</div>`
+</div>`;
 };
 
 module.exports = json2MobileEl;
