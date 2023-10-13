@@ -12,9 +12,11 @@ const path      = require('path'),
 
 const PORT = process.env.PORT || 8000;
 const NODE_ENV = process.env.NODE_ENV || 'dev';
-const EDITOR_ADDRESS = process.env.EDITOR_ADDRESS || 'https://editor.netsblox.org';
-const SERVER_ADDRESS = process.env.SERVER_ADDRESS || 'https://netsblox.org';
-const CLOUD_ADDRESS = process.env.CLOUD_ADDRESS || 'https://cloud.netsblox.org';
+
+process.env.EDITOR_ADDRESS = process.env.EDITOR_ADDRESS|| 'https://editor.netsblox.org';
+process.env.SERVER_ADDRESS = process.env.SERVER_ADDRESS|| 'https://netsblox.org';
+process.env.CLOUD_ADDRESS = process.env.CLOUD_ADDRESS|| 'https://cloud.netsblox.org';
+const { EDITOR_ADDRESS, CLOUD_ADDRESS, SERVER_ADDRESS } = process.env;
 /**********************************************************************************************************/
 
 // Setup our Express pipeline
