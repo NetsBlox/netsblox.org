@@ -53,13 +53,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const https = require('https');
 const agent = new https.Agent({rejectUnauthorized: false});
-let getPublicProjects = memoize(() => {
+let getPublicProjects = memoize(async () => {
     log.debug('Calling server for public projects');
-    return axios({
+    const response = await axios({
         httpsAgent: agent,
         method: 'GET',
-        url: CLOUD_ADDRESS +'/projects/public/'
+        url: CLOUD_ADDRESS +'/projects/user/ledeczi'
     });
+    const projects = response.data.filter(project => project.state === 'Public');
+    return projects;
 }, {promise: true, maxAge: 86400 });
 
 let getExamples = memoize(async (skipNames) => {
