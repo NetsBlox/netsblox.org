@@ -63,7 +63,7 @@ let getPublicProjects = memoize(async () => {
         url: CLOUD_ADDRESS +'/projects/user/ledeczi'
     });
     const projects = response.data.filter(project => project.state === 'Public');
-    return projects;
+    return projects.slice(0, 25);
 }, {promise: true, maxAge: 86400 });
 
 let getExamples = memoize(async (skipNames) => {
