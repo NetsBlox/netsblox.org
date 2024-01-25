@@ -471,3 +471,17 @@ footer a.back-to-top {
     -webkit-transform: scaleY(1.0);
   }
 }
+
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  text-align: center;
+}
