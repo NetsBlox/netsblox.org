@@ -2,15 +2,12 @@ extends includes/layout.pug
 block title
   title BeatBlox
 block content
-  mixin ytPlayer(url, title)
-    .panel.panel-default.youtube
-      .panel-body
-        .embed-responsive.embed-responsive-16by9
-          iframe(class="embed-responsive-item", allowfullscreen="allowfullscreen", src= url)
+  mixin ytPlayer(url, width, height)
+    iframe(allowfullscreen="allowfullscreen" width=width height=height src=url)
 
   .container
-    .container(style='text-align: center')
-      img(src='/images/beatblox/logo.png', style='width: 150px; margin: 25px' alt='BeatBlox Logo')
+    div(style='text-align: center')
+      img(src='/images/beatblox/logo.png' style='width: 150px; margin: 25px' alt='BeatBlox Logo')
 
     h2 BeatBlox
     p
@@ -34,21 +31,24 @@ block content
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Basic Music Functionality
         div(style='margin: 20px auto 20px auto')
-          a(href='http://tinyurl.com/BeepBlox')
-            img(src='/images/placeholder.jpg' style='width: 200px')
+          +ytPlayer('https://www.youtube.com/embed/YVK3ysKePc8', 500, 281)
         p Introduction to BeatBlox showcasing a simple block-based satellite-like musical effect.
+        p
+        p #[a(href='http://tinyurl.com/BeepBlox') Open Project]
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Multi-Instrument Functionality
         div(style='margin: 20px auto 20px auto')
-          a(href='http://tinyurl.com/CodeToJoy')
-            img(src='/images/placeholder.jpg' style='width: 200px')
+          +ytPlayer('https://www.youtube.com/embed/_-9BKaLxeQw', 500, 281)
         p BeatBlox-based implementation of Beethoven's "Ode to Joy" highlighting simultaneous playback of multiple instruments along with real-time score visualization.
+        p
+        p #[a(href='http://tinyurl.com/CodeToJoy') Open Project]
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Real-Time Graphics
         div(style='margin: 20px auto 20px auto')
-          a(href='http://tinyurl.com/BeatBloxVisualizations')
-            img(src='/images/placeholder.jpg' style='width: 200px')
+          +ytPlayer('https://www.youtube.com/embed/t6NO8M-WykQ', 500, 281)
         p Sampling of various easy-to-create visualizations to accompany a musical composition, demonstrating the real-time graphical capabilities of BeatBlox.
+        p
+        p #[a(href='http://tinyurl.com/BeatBloxVisualizations') Open Project]
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Distributed Projects
         div(style='margin: 20px auto 20px auto')
@@ -58,9 +58,10 @@ block content
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Networked Effects and Graphics
         div(style='margin: 20px auto 20px auto')
-          a(href='http://tinyurl.com/BeatBloxHelicopter')
-            img(src='/images/placeholder.jpg' style='width: 200px')
+          +ytPlayer('https://www.youtube.com/embed/m38ea6as4s0', 500, 281)
         p Helicopter flyby on a single computer first, then in three separate browser tabs, and finally, using distributed audiovisual animation across three computers showing a helicopter moving both visually and acoustically between individually running programs.
+        p
+        p #[a(href='http://tinyurl.com/BeatBloxHelicopter') Open Project]
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 External Device Access
         div(style='margin: 20px auto 20px auto')
