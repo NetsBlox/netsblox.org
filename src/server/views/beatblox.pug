@@ -9,57 +9,79 @@ block content
           iframe(class="embed-responsive-item", allowfullscreen="allowfullscreen", src= url)
 
   .container
-      +ytPlayer('https://www.youtube.com/embed/Or4zIiDn0m0')
+    .container(style='text-align: center')
+      img(src='images/beatblox/logo.png', style='width: 150px; margin: 25px' alt='BeatBlox Logo')
 
-      h2 BeatBlox
-      p
-        | PhoneIoT is a free mobile app for #[a(href='https://apps.apple.com/be/app/phoneiot/id1567444865#?platform=iphone') iOS]
-        | and #[a(href='https://play.google.com/store/apps/details?id=org.netsblox.phoneiot') Android] that allows you to
-        | connect your device to NetsBlox and access its sensors and display
-        | from your NetsBlox projects. This enables students to create things like tilting controls
-        | for a game (accelerometer), tracking your device's position on a map (location),
-        | or creating an orientation-aware system like a compass (orientation),
-        | all from within NetsBlox. The customizable display allows users to
-        | populate the device's screen with controls like labels, buttons, joysticks,
-        | image displays, and more. Custom controls can even be configured to send
-        | a message to your NetsBlox project when a user interacts with them,
-        | such as pressing a button or moving a joystick.
-      p
-        | After installing the app on your device and pressing "Connect" in the app,
-        | PhoneIoT has very little setup to getting started: you simply need to enter
-        | the "Device ID" from the app menu into your project to connect to the device
-        | from NetsBlox with the #[a(href='https://editor.netsblox.org/docs/services/PhoneIoT/index.html') PhoneIoT service].
-      p
-        | PhoneIoT provides two main ways of interacting with both the sensors and display:
-        | explicit requests (using normal NetsBlox RPC return values), and event-based "streaming"
-        | access (using normal NetsBlox messages). The former is useful for introducing
-        | students to PhoneIoT, and the latter is a more streamlined method which
-        | aims to teach students the use cases of live data streaming and event-driven
-        | communication, both of which are common paradigms in industrial IoT applications.
+    h2 BeatBlox
+    p
+      | #[a(href='https://netsblox.org/') NetsBlox] is a block-based programming environment developed at Vanderbilt University built on top of the open-source codebase of #[a(href='https://snap.berkeley.edu/') Snap!] from UC Berkeley.
+      | NetsBlox was specifically designed to teach cutting edge computing concepts such as distributed computing, the Internet of Things, cybersecurity, etc., to novices.
+      | It opens the internet to student projects making computing more relevant to their lives and more engaging.
+      | A modular, full year, high school curriculum utilizing NetsBlox called #[a(href='https://csfrontiers.org/') Computer Science Frontiers] (CSF) is freely available to teachers to bring these capabilities to their classrooms.
+      | A new #[a(href='https://www.coursera.org/learn/programming-for-a-networked-world/') online course] can help both students and teachers learn NetsBlox from the ground up.
+    p
+      | BeatBlox is a new extension of NetsBlox designed to engage students even more by combining computing with another domain that most people love, music.
+      | BeatBlox aims to reach students who have traditionally not felt drawn to computer science.
+      | BeatBlox allows students to create high quality music using a rich set of simulated digital instruments, add special effects such as reverb, panning or layering, incorporate a rich selection of public domain tunes into their creations, import sheet music and save their compositions for replay on any device.
+      | The networking capabilities of NetsBlox makes it possible for students to collaborate and create a digital orchestra where each computer plays a single instrument, yet they remain synchronized.
+      | As NetsBlox is a powerful programming language, students can add visualizations to their music or conversely, add sound effects or musical scores to their games or digital animations.
+    p
+      | Check out the set of projects created with BeatBlox.
+      | Each demo is summarized in a brief video and a link is provided to open up the project in BeatBlox for tinkering.
+      | To start a project, click the green flag in the top right corner of BeatBlox.
 
-      .container(style='text-align: center')
-        img(src='images/phoneiot/fitness.jpg', style='width: 300px; padding: 25px' alt='Fitness tracker project screenshot')
-        img(src='images/phoneiot/with-controls.jpg', style='width: 300px; padding: 25px' alt='PhoneIoT device with custom controls')
-
-      h3 Examples and Project Walkthroughs
-
-      p
-      | The following resources give more information about PhoneIoT,
-      | including some student projects to teach targeted concepts.
-      | Any video resources that start with a non-empty project will have a link
-      | in the description to the starter code.
-      br
-      br
-
-      ol
-        li
-          a(href='https://www.youtube.com/watch?v=oRWda9jT_c8') Introduction to PhoneIoT: Basic usage, including how to access the sensors and custom display
-        li
-          a(href='https://www.youtube.com/watch?v=iyxgsvazFq0') Drop Game Project: Using sensor data streaming with the accelerometer to control a sprite's movement
-        li
-          a(href='https://www.youtube.com/watch?v=kTtO7iuRQWI') GPS Tracker: Combining sensor data streaming, custom controls, and other NetsBlox services to make a live GPS tracker
-
-      h3 Required Tools
-      p
-      | The only required hardware for using PhoneIoT is an iOS or Android mobile device.
-      | The PhoneIoT app, as well as NetsBlox itself, are available free of charge.
+    .flexrow
+      .flexcol(style='min-width: 400px; padding: 40px')
+        h3 Basic Music Functionality
+        div(style='margin: 20px auto 20px auto')
+          a(href='http://tinyurl.com/BeepBlox')
+            img(src='images/placeholder.jpg' style='width: 200px')
+        p Introduction to BeatBlox showcasing a simple block-based satellite-like musical effect.
+      .flexcol(style='min-width: 400px; padding: 40px')
+        h3 Multi-Instrument Functionality
+        div(style='margin: 20px auto 20px auto')
+          a(href='http://tinyurl.com/CodeToJoy')
+            img(src='images/placeholder.jpg' style='width: 200px')
+        p BeatBlox-based implementation of Beethoven's "Ode to Joy" highlighting simultaneous playback of multiple instruments along with real-time score visualization.
+      .flexcol(style='min-width: 400px; padding: 40px')
+        h3 Real-Time Graphics
+        div(style='margin: 20px auto 20px auto')
+          a(href='http://tinyurl.com/BeatBloxVisualizations')
+            img(src='images/placeholder.jpg' style='width: 200px')
+        p Sampling of various easy-to-create visualizations to accompany a musical composition, demonstrating the real-time graphical capabilities of BeatBlox.
+      .flexcol(style='min-width: 400px; padding: 40px')
+        h3 Distributed Projects
+        div(style='margin: 20px auto 20px auto')
+          a(href='http://tinyurl.com/MultiInstrument')
+            img(src='images/placeholder.jpg' style='width: 200px')
+        p Implementation of a four-piece band first on a single computer and then by four individual BeatBlox users being played back synchronously.
+      .flexcol(style='min-width: 400px; padding: 40px')
+        h3 Networked Effects and Graphics
+        div(style='margin: 20px auto 20px auto')
+          a(href='http://tinyurl.com/BeatBloxHelicopter')
+            img(src='images/placeholder.jpg' style='width: 200px')
+        p Helicopter flyby on a single computer first, then in three separate browser tabs, and finally, using distributed audiovisual animation across three computers showing a helicopter moving both visually and acoustically between individually running programs.
+      .flexcol(style='min-width: 400px; padding: 40px')
+        h3 External Device Access
+        div(style='margin: 20px auto 20px auto')
+          a(href='http://tinyurl.com/DeviceMaracas')
+            img(src='images/placeholder.jpg' style='width: 200px')
+        p Musical compositions demonstrating ease of access to external devices, such as MIDI keyboards and mobile phones. To try maracas on your phone, you need to install the PhoneIoT mobile app from the app store and then scan the QR code as shown in the video.
+      .flexcol(style='min-width: 400px; padding: 40px')
+        h3 Open Accessibility and Tinkering
+        div(style='margin: 20px auto 20px auto')
+          a(href='http://tinyurl.com/MidiImport')
+            img(src='images/placeholder.jpg' style='width: 200px')
+        p End-to-end demonstration of importing a public domain MIDI song into BeatBlox, changing its key and tempo, and exporting the resulting audio to a file.
+      .flexcol(style='min-width: 400px; padding: 40px')
+        h3 Augmented Reality
+        div(style='margin: 20px auto 20px auto')
+          a(href='http://tinyurl.com/BeatBloxTheremin')
+            img(src='images/placeholder.jpg' style='width: 200px')
+        p Two hardware-free instrument implementations allowing users to experiment with playing music without requiring physical hardware or instruments using a webcam only.
+      .flexcol(style='min-width: 400px; padding: 40px')
+        h3 Curricular Tasks
+        div(style='margin: 20px auto 20px auto')
+          a(href='http://tinyurl.com/BeatBloxGrader')
+            img(src='images/placeholder.jpg' style='width: 200px')
+        p Sample curricular module with a simple built-in task with integrated assessment and the ability for teachers to examine the process not just the end result.
