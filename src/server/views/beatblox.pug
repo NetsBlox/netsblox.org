@@ -12,9 +12,9 @@ block content
     h2(style='text-align: center') BeatBlox
     p
       | BeatBlox is the latest extension to the #[a(href='https://netsblox.org/') NetsBlox] block-based programming environment developed at Vanderbilt University.
-      | NetsBlox was built on top of the open-source codebase of #[a(href='https://snap.berkeley.edu/') Snap!] from UC Berkeley and was specifically designed to teach curring edge computing concepts such as distributed computing, the Internet of Things, and cybersecurity to novices.
+      | NetsBlox was built on top of the open-source codebase of #[a(href='https://snap.berkeley.edu/') Snap!] from UC Berkeley and was specifically designed to teach cutting edge computing concepts such as distributed computing, the Internet of Things, and cybersecurity to novices.
       | It opens the internet to student projects, making computing more relevant to their lives and more engaging.
-      | A modular, full year, high school curriculum utilizing NetsBlox called #[a(href='https://csfrontiers.org/') Computer Science Frontiers] (CSF) utilizes NetsBlox and is freely available to teachers to bring these capabilities to their classrooms.
+      | A modular, full year, high school curriculum called #[a(href='https://csfrontiers.org/') Computer Science Frontiers] (CSF) utilizes NetsBlox and is freely available to teachers to bring these capabilities to their classrooms.
       | A new #[a(href='https://www.coursera.org/learn/programming-for-a-networked-world/') online course] can help both students and teachers learn NetsBlox from the ground up.
     p
       | With the creation of BeatBlox, NetsBlox aims to become even more engaging and motivating to students by combining computing with another domain that is already widely loved by people from all backgrounds, music.
@@ -28,7 +28,7 @@ block content
       | To run a project, click the green flag at the top right corner of the BeatBlox interface.
       | Happy coding!
 
-    h2(style='text-align: center; margin-top: 60px; margin-bottom: 30px') Demos (New Format)
+    h2(style='text-align: center; margin-top: 60px; margin-bottom: 30px') Demos (Carousel)
 
     #myCarousel.carousel.hidden-xs.slide(data-ride='carousel', data-interval='', style='height: 765px')
       ol.carousel-indicators(style='font-color: black')
@@ -123,7 +123,7 @@ block content
       a.right.hidden-xs.carousel-control(href='#myCarousel', data-slide='next', style='width: 100px')
         span.glyphicon.glyphicon-chevron-right
 
-    h2(style='text-align: center; margin-top: 100px') Demos (Old Format)
+    h2(style='text-align: center; margin-top: 100px') Demos (2-Column)
 
     .flexrow
       .flexcol(style='min-width: 400px; padding: 40px')
@@ -133,6 +133,7 @@ block content
         p Introduction to BeatBlox showcasing a simple block-based satellite-like musical effect.
         p
         p #[a(href='http://tinyurl.com/BeepBlox') Open Project]
+
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Multi-Instrument Functionality
         div(style='margin: 20px auto 20px auto')
@@ -140,6 +141,7 @@ block content
         p BeatBlox-based implementation of Beethoven's "Ode to Joy" highlighting simultaneous playback of multiple instruments along with real-time score visualization.
         p
         p #[a(href='http://tinyurl.com/CodeToJoy') Open Project]
+
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Real-Time Graphics
         div(style='margin: 20px auto 20px auto')
@@ -147,6 +149,7 @@ block content
         p Sampling of various easy-to-create visualizations to accompany a musical composition, demonstrating the real-time graphical capabilities of BeatBlox.
         p
         p #[a(href='http://tinyurl.com/BeatBloxVisualizations') Open Project]
+
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Distributed Projects
         div(style='margin: 20px auto 20px auto')
@@ -154,6 +157,7 @@ block content
         p Implementation of a four-piece band first on a single computer and then by four individual BeatBlox users being played back synchronously.
         p
         p #[a(href='http://tinyurl.com/MultiInstrument') Open Project]
+
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Networked Effects and Graphics
         div(style='margin: 20px auto 20px auto')
@@ -161,26 +165,100 @@ block content
         p Helicopter flyby on a single computer first, then in three separate browser tabs, and finally, using distributed audiovisual animation across three computers showing a helicopter moving both visually and acoustically between individually running programs.
         p
         p #[a(href='http://tinyurl.com/BeatBloxHelicopter') Open Project]
+
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 External Device Access
         div(style='margin: 20px auto 20px auto')
-          a(href='http://tinyurl.com/DeviceMaracas')
-            img(src='/images/placeholder.jpg' style='width: 200px')
+          img(src='/images/placeholder.jpg' style='width: 200px')
         p Musical compositions demonstrating ease of access to external devices, such as MIDI keyboards and mobile phones. To try maracas on your phone, you need to install the PhoneIoT mobile app from the app store and then scan the QR code as shown in the video.
+        p
+        p #[a(href='http://tinyurl.com/DeviceMaracas') Open Project]
+
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Open Accessibility and Tinkering
         div(style='margin: 20px auto 20px auto')
-          a(href='http://tinyurl.com/MidiImport')
-            img(src='/images/placeholder.jpg' style='width: 200px')
+          img(src='/images/placeholder.jpg' style='width: 200px')
         p End-to-end demonstration of importing a public domain MIDI song into BeatBlox, changing its key and tempo, and exporting the resulting audio to a file.
+        p
+        p #[a(href='http://tinyurl.com/MidiImport') Open Project]
+
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Augmented Reality
         div(style='margin: 20px auto 20px auto')
-          a(href='http://tinyurl.com/BeatBloxTheremin')
-            img(src='/images/placeholder.jpg' style='width: 200px')
+          img(src='/images/placeholder.jpg' style='width: 200px')
         p Two hardware-free instrument implementations allowing users to experiment with playing music without requiring physical hardware or instruments using a webcam only.
+        p
+        p #[a(href='http://tinyurl.com/BeatBloxTheremin') Open Project]
+
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Curricular Tasks
         div(style='margin: 20px auto 20px auto')
           +ytPlayer('L09BBwpN988', 500, 281)
         p Sample curricular module with a simple built-in task with integrated assessment and the ability for teachers to examine the process not just the end result.
+        p
+        p #[a(href='http://tinyurl.com/BeatBloxGrader') Open Project]
+
+    h2(style='text-align: center; margin-top: 100px') Demos (1-column)
+
+    div(style='text-align: center')
+      h3(style='margin: 80px 0 20px 0') Basic Music Functionality
+      +ytPlayer('YVK3ysKePc8', 900, 506)
+      p(style='margin-top: 20px') Introduction to BeatBlox showcasing a simple block-based satellite-like musical effect.
+      p
+      p #[a(href='http://tinyurl.com/BeepBlox') Open Project]
+
+    div(style='text-align: center')
+      h3(style='margin: 80px 0 20px 0') Multi-Instrument Functionality
+      +ytPlayer('_-9BKaLxeQw', 900, 506)
+      p(style='margin-top: 20px') BeatBlox-based implementation of Beethoven's "Ode to Joy" highlighting simultaneous playback of multiple instruments along with real-time score visualization.
+      p
+      p #[a(href='http://tinyurl.com/CodeToJoy') Open Project]
+
+    div(style='text-align: center')
+      h3(style='margin: 80px 0 20px 0') Real-Time Graphics
+      +ytPlayer('t6NO8M-WykQ', 900, 506)
+      p(style='margin-top: 20px') Sampling of various easy-to-create visualizations to accompany a musical composition, demonstrating the real-time graphical capabilities of BeatBlox.
+      p
+      p #[a(href='http://tinyurl.com/BeatBloxVisualizations') Open Project]
+
+    div(style='text-align: center')
+      h3(style='margin: 80px 0 20px 0') Distributed Projects
+      +ytPlayer('eqd-MeSWxfI', 900, 506)
+      p(style='margin-top: 20px') Implementation of a four-piece band first on a single computer and then by four individual BeatBlox users being played back synchronously.
+      p
+      p #[a(href='http://tinyurl.com/MultiInstrument') Open Project]
+
+    div(style='text-align: center')
+      h3(style='margin: 80px 0 20px 0') Networked Effects and Graphics
+      +ytPlayer('m38ea6as4s0', 900, 506)
+      p(style='margin-top: 20px') Helicopter flyby on a single computer first, then in three separate browser tabs, and finally, using distributed audiovisual animation across three computers showing a helicopter moving both visually and acoustically between individually running programs.
+      p
+      p #[a(href='http://tinyurl.com/BeatBloxHelicopter') Open Project]
+
+    div(style='text-align: center')
+      h3(style='margin: 80px 0 20px 0') External Device Access
+      img(src='/images/placeholder.jpg' style='width: 200px')
+      p(style='margin-top: 20px') Musical compositions demonstrating ease of access to external devices, such as MIDI keyboards and mobile phones. To try maracas on your phone, you need to install the PhoneIoT mobile app from the app store and then scan the QR code as shown in the video.
+      p
+      p #[a(href='http://tinyurl.com/DeviceMaracas') Open Project]
+
+    div(style='text-align: center')
+      h3(style='margin: 80px 0 20px 0') Open Accessibility and Tinkering
+      img(src='/images/placeholder.jpg' style='width: 200px')
+      p(style='margin-top: 20px') End-to-end demonstration of importing a public domain MIDI song into BeatBlox, changing its key and tempo, and exporting the resulting audio to a file.
+      p
+      p #[a(href='http://tinyurl.com/MidiImport') Open Project]
+
+    div(style='text-align: center')
+      h3(style='margin: 80px 0 20px 0') Augmented Reality
+      img(src='/images/placeholder.jpg' style='width: 200px')
+      p(style='margin-top: 20px') Two hardware-free instrument implementations allowing users to experiment with playing music without requiring physical hardware or instruments using a webcam only.
+      p
+      p #[a(href='http://tinyurl.com/BeatBloxTheremin') Open Project]
+
+    div(style='text-align: center')
+      h3(style='margin: 80px 0 20px 0') Curricular Tasks
+      +ytPlayer('L09BBwpN988', 900, 506)
+      p(style='margin-top: 20px') Sample curricular module with a simple built-in task with integrated assessment and the ability for teachers to examine the process not just the end result.
+      p
+      p #[a(href='http://tinyurl.com/BeatBloxGrader') Open Project]
