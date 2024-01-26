@@ -2,8 +2,8 @@ extends includes/layout.pug
 block title
   title BeatBlox
 block content
-  mixin ytPlayer(url, width, height)
-    iframe(allowfullscreen="allowfullscreen" width=width height=height src=url)
+  mixin ytPlayer(id, width, height)
+    iframe(allowfullscreen="1" width=width height=height src='https://www.youtube.com/embed/'+id)
 
   .container
     div(style='text-align: center')
@@ -32,21 +32,21 @@ block content
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Basic Music Functionality
         div(style='margin: 20px auto 20px auto')
-          +ytPlayer('https://www.youtube.com/embed/YVK3ysKePc8?version=3&hd=1&vq=hd1080&quality=high', 500, 281)
+          +ytPlayer('YVK3ysKePc8', 500, 281)
         p Introduction to BeatBlox showcasing a simple block-based satellite-like musical effect.
         p
         p #[a(href='http://tinyurl.com/BeepBlox') Open Project]
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Multi-Instrument Functionality
         div(style='margin: 20px auto 20px auto')
-          +ytPlayer('https://www.youtube.com/embed/_-9BKaLxeQw?version=3&hd=1&vq=hd1080&quality=high', 500, 281)
+          +ytPlayer('_-9BKaLxeQw', 500, 281)
         p BeatBlox-based implementation of Beethoven's "Ode to Joy" highlighting simultaneous playback of multiple instruments along with real-time score visualization.
         p
         p #[a(href='http://tinyurl.com/CodeToJoy') Open Project]
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Real-Time Graphics
         div(style='margin: 20px auto 20px auto')
-          +ytPlayer('https://www.youtube.com/embed/t6NO8M-WykQ?version=3&hd=1&vq=hd1080&quality=high', 500, 281)
+          +ytPlayer('t6NO8M-WykQ', 500, 281)
         p Sampling of various easy-to-create visualizations to accompany a musical composition, demonstrating the real-time graphical capabilities of BeatBlox.
         p
         p #[a(href='http://tinyurl.com/BeatBloxVisualizations') Open Project]
@@ -59,7 +59,7 @@ block content
       .flexcol(style='min-width: 400px; padding: 40px')
         h3 Networked Effects and Graphics
         div(style='margin: 20px auto 20px auto')
-          +ytPlayer('https://www.youtube.com/embed/m38ea6as4s0?version=3&hd=1&vq=hd1080&quality=high', 500, 281)
+          +ytPlayer('m38ea6as4s0', 500, 281)
         p Helicopter flyby on a single computer first, then in three separate browser tabs, and finally, using distributed audiovisual animation across three computers showing a helicopter moving both visually and acoustically between individually running programs.
         p
         p #[a(href='http://tinyurl.com/BeatBloxHelicopter') Open Project]
