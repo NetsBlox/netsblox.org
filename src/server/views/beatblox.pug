@@ -87,8 +87,7 @@ block content
 
         .item(style='height: 100%; text-align: center; background-color: #d8d8d8')
           div(style='padding-top: 20px')
-          div
-            img(src='/images/placeholder.jpg' style='width: 200px')
+          +ytPlayer('HXxqptj6w0Q', 900, 506)
           h2 External Device Access
           p(style='max-width: 900px; margin: 0 auto 0 auto') Musical compositions demonstrating ease of access to external devices, such as MIDI keyboards and mobile phones. To try maracas on your phone, you need to install the PhoneIoT mobile app from the app store and then scan the QR code as shown in the video.
           p
@@ -171,7 +170,8 @@ block content
     div(style='text-align: center; margin-top: 80px')
       h3 External Device Access
       div(style='margin: 20px auto 20px auto')
-        img(src='/images/placeholder.jpg' style='width: 200px')
+        div(style='width: 500px; height: 281px; position: absolute; display: inline-block; cursor: pointer', onclick='window.open("https://youtube.com/video/HXxqptj6w0Q", "_blank")')
+        +ytPlayer('HXxqptj6w0Q', 500, 281)
       p Musical compositions demonstrating ease of access to external devices, such as MIDI keyboards and mobile phones. To try maracas on your phone, you need to install the PhoneIoT mobile app from the app store and then scan the QR code as shown in the video.
       p
       p #[a(href='http://tinyurl.com/DeviceMaracas', target='_blank') Open Project]
