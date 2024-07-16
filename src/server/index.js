@@ -182,6 +182,7 @@ app.get('/pyblox', (req,res) => renderView(res, 'pyblox.pug'));
 app.get('/beatblox', (req,res) => renderView(res, 'beatblox.pug'));
 app.get('/curriculum', (req,res) => renderView(res, 'curriculum.pug'));
 app.get('/wildlife', (req,res) => renderView(res, 'wildlife.pug'));
+app.get('/ai-camp', (req,res) => renderView(res, 'ai-camp.pug'));
 
 // 2019 camp files
 app.get('/camp2019/netsblox', (req,res) => renderView(res, 'camp2019/netsblox.pug'));

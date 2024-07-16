@@ -1,0 +1,57 @@
+extends includes/layout.pug
+block title
+  title AI Camp Curriculum
+block content
+  .container
+    h2 AI Camp Curriculum
+
+    p This page provides resources for our NetsBlox-based AI summer camp curriculum. Over the course of this module, students are introduced to some of the earliest history of AI, a few "classical" AI algorithms, and finally some of the most recent breakthroughs in AI, such as the Large Language Models that power ChatGPT. However, we won't only be learning these topics: we'll be building many of them in NetsBlox!
+
+    p This curriculum is based around group projects and group discussion, but could be completed individually if provided additional time. Some prior programming experience with NetsBlox is recommended. You may use any other #[a(href = "/curriculum") NetsBlox curriculum] as pre-work assignments prior to starting this module.
+
+    h4 Materials
+
+    ul
+      li #[a(href = "https://docs.google.com/document/d/1cYXk0e5gJvPNNAK7hVaYL92rY6LBhiG1/edit?usp=sharing&ouid=109658049399807181387&rtpof=true&sd=true") Syllabus] and #[a(href = "https://docs.google.com/document/d/18NAtN2zkJ43KiPlO2KIB5-Pv-Uab_mLK/edit?usp=sharing&ouid=109658049399807181387&rtpof=true&sd=true") Lesson Plan]. #[em Note that these documents were originally created for a 5-day camp and were restructured into the following 4-day plan.]
+      li #[a(href = "https://extensions.netsblox.org/") NetsBlox Extensions] provide various new blocks for constructing some of the projects we use. Feel free to check them out!
+      li The official #[a(href = "https://editor.netsblox.org/docs/") NetsBlox Documentation] page provides information about some of the internet-based services we use in our AI projects.
+      li Slides for #[a(href = "https://docs.google.com/presentation/d/188nltVxQSKqMbygC-cd1nB52rxQriuf4nzLJg2cUnRw/edit?usp=sharing") Day 1], #[a(href = "https://docs.google.com/presentation/d/1z3IEMEtK6uhHfu40vUL1Cjno3X9erOQKx7-owggN-ZU/edit?usp=sharing") Day 2], #[a(href = "https://docs.google.com/presentation/d/1Pf9qvz1UVUmnt87XwkeZcpm_RYAV4NMebHIW9Jk63kk/edit?usp=sharing") Day 3], and #[a(href = "https://docs.google.com/presentation/d/1BliPIzu7qy2ejdJTajxnuXhLtopXgeMgRt4c0DtwXMg/edit?usp=sharing") Day 4]
+
+    h4 Projects
+
+    ul
+      li #[strong Ball-Balancing Reinforcement Learning Agent] - In this project, we provide students a starter project that implements a reinforcement learning (RL) agent tasked with balancing a ball on a beam without letting it roll off either side. Students are challenged to come up with a "reward function" that quickly/efficiently teaches the RL agent what kinds of behaviors are good/bad in order to learn.
+        ul
+          li #[a(href = "https://editor.netsblox.org/?action=present&Username=devinjean&ProjectName=ball-balancing-starter&editMode&noRun") Starter Project]
+          li #[a(href = "https://editor.netsblox.org/?action=present&Username=devinjean&ProjectName=ball-balancing&editMode&noRun") Completed Project]
+      li #[strong Minecraft Maze Reinforcement Learning Agent] - In this (more difficult) RL project, students must come up with a reward function that can teach a 2D character how to explore a maze and find diamonds. Students are encouraged to create reward functions that do not assume anything about the maze (i.e., the reward function should not include the distance to diamonds or any other information that a player should not be able to know).
+        ul
+          li #[a(href = "https://editor.netsblox.org/?action=present&Username=devinjean&ProjectName=minecraft-maze-starter&editMode&noRun") Starter Project]
+          li #[a(href = "https://editor.netsblox.org/?action=present&Username=devinjean&ProjectName=minecraft-maze&editMode&noRun") Completed Project]
+      li #[strong Turing Test Activity] - In this project, students join a NetsBlox distributed chatroom and are randomly paired either with another student or with an instance of ChatGPT. Students are then put into a time- and round-based back and forth dialog and are tasked with determining whether the other person is a human or a computer. Obviously, students are instructed to not ask "gotcha" questions that are designed specifically to fool the AI based on local or privileged information (e.g., what time it is, where you are, what your name is, details about your appearance, etc.).
+        ul
+          li #[a(href = "https://editor.netsblox.org/?extensions=%5B%22https%3A%2F%2Fextensions.netsblox.org%2Fextensions%2FOpenAIBlocks%2Findex.js%22%5D&action=present&Username=devinjean&ProjectName=turing-test-client&editMode&noRun") Client Project]
+          li #[a(href = "https://editor.netsblox.org/?extensions=%5B%22https%3A%2F%2Fextensions.netsblox.org%2Fextensions%2FOpenAIBlocks%2Findex.js%22%5D&action=present&Username=devinjean&ProjectName=turing-test-server&editMode&noRun") Server Project] - Note that whoever runs the server will need to have an OpenAI API key in order to use the OpenAI blocks provided by the extension. To add your key, use the puzzle-shaped Extensions menu near the top right of the NetsBlox editor. #[strong The API key is saved in local storage, so only do this on your personal computer!]
+
+    h4 Continued Learning
+
+    p In this camp, we use the NetsBlox block-based programming environment in order to lower the barrier for entry to some of these traditionally more advanced topics that we covered. Although all of the topics we've mentioned can be done in NetsBlox (indeed, you can now open some of the projects we used and delve inside some of the provided custom blocks to see how it was done), it is unfortunately the case that most external machine learning and AI material uses other, more complex programming languages such as Python (sort of the de-facto AI programming language, among other wide-spread uses).
+
+    p In order to help ease the transition from NetsBlox to Python, we have created a dedicated tool called #[a(href = "/pyblox") PyBlox], which provides you the full power of Python but still with the familiar features of the block-based editor you have been using. Feel free to use this tool if you would like to make this transition.
+
+    p Alternatively, if you would like to remain in NetsBlox for the time being, we have many other resources for delving into other topics such as #[a(href = "/roboscape") robotics] (including autonomy), #[a(href = "/phoneiot") interacting with phones] (through code), and various internet-based topics such as distributed computing and multiplayer games (or shared applications in general). These and other resources can be found on various pages of this website.
+
+    h5 AI Topic Exploration
+
+    ul
+      li #[a(href = "https://www.youtube.com/watch?v=aircAruvnKk") But what is a neural network?]
+      li #[a(href = "https://www.youtube.com/watch?v=IHZwWFHWa-w") Gradient descent, how neural networks learn]
+      li #[a(href = "https://www.youtube.com/watch?v=Ilg3gGewQ5U") What is backpropagation really doing?]
+      li #[a(href = "https://www.youtube.com/watch?v=tIeHLnjs5U8") Backpropagation calculus]
+      li #[a(href = "https://www.youtube.com/watch?v=wjZofJX0v4M") But what is a GPT? Visual intro to transformers]
+      li #[a(href = "https://www.youtube.com/watch?v=eMlx5fFNoYc") Attention in transformers, visually explained]
+
+    h5 AI Coding in Python
+
+    ul
+      li #[a(href = "https://www.geeksforgeeks.org/q-learning-in-python/") Q-Learning in Python] #[em (this is the algorithm we implemented for you in our RL projects)]
