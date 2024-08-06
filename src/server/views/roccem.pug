@@ -1,0 +1,62 @@
+extends includes/layout.pug
+block title
+  title ROCCEM 
+block content
+
+  .container
+    h2 ROCCEM
+    p(align='justify')
+      | "Bringing  
+      span(style="color:red;") Ro
+      | botics, 
+      span(style="color:red;") C
+      | ybersecurity and 
+      span(style="color:red;") C
+      | omputer Scienc
+      span(style="color:red;") e 
+      | to the 
+      span(style="color:red;") M
+      | iddle School classroom" (
+      span(style="color:red;") ROCCEM
+      | ) is an educational development effort funded by the National Science Foundation.    
+      | The aim of ROCCEM is to provide middle school educators with accessible, focused, and engaging educational material for schools across Tennessee and beyond. 
+      | Using NetsBlox, a block-based programming environment, the ROCCEM curriculum introduces students to robotics, cybersecurity, and advanced computer science concepts without the text-based programming hurdle. 
+      | The work is based on a previous effort targeting high school students using physical robots as described in this 
+      a(href = "https://dl.acm.org/doi/pdf/10.1145/3287324.3287450") paper
+      |.
+      | To avoid dependence on physical hardware, we use a 3D robotic simulation environment, called RoboScape Online (RO). 
+      | An overview is provided in this 
+      a(href = "https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2022.1031572/full") paper
+      |.
+      | The intuitive design and public accessiblity of NetsBlox and RO enable educators to utilize the curriculum with virtually no hurdles.
+      | The 9-week long ROCCEM curriculum is divided into four modules: 
+
+    h3 Module 1: Introduction to Distributed Programming 
+    p(align='justify')
+      | This module introduces students to fundamental computer science concepts (e.g., variables, lists, etc.). 
+      | Additionally, this module introduces distributed programming concepts, such as RPC's (Remote Procedure Calls).
+      | In this module, students learn imperative programming, APIs (RPCs), abstraction, and data and control structures.
+      | Hints of cybersecurity are provided: for instance, by introducing lists in the context of allow/deny lists.
+
+    h3 Module 2: Networking and Cybersecurity
+    p(align='justify')
+      | This module introduces students to networking using the message passing abstraction of NetsBlox. 
+      | A chatroom and simulated peer-to-peer networking projects are used to illustrate the human-human communications challenges.
+      | This module serves as an introduction of fundamental cybersecurity concepts related to confidentiality and integrity, including encryption.
+
+    h3 Module 3: Robotics and Encryption
+    p(align='justify')
+      | Introduction to cybersecurity concepts in the context of autonomous vehicles using RoboScape Online (RO). 
+      | Students first complete straightforward driving tasks focusing on direct sensor measurements and motor actuation. 
+      | We maintain the `social' strategy of introducing key cybersecurity issues and vulnerabilities through human-human scenarios. 
+      | Once the threat is clear, we apply it to students' autonomous vehicle projects, as they modify their solutions to defend their robots (while other classmates play as adversaries). 
+
+    h3 Module 4: Automation and Defensive Strategies
+    p(align='justify')
+      | Students will complete cooperative challenge activities in RO. 
+      | These scenarios increase in technical complexity and address the CIA triad (confidentiality, integrity, availability).
+      | Each scenario is accompanied by a common cyber-attack strategy and it's respective defence. 
+      | This module grounds students' understanding in 'social' scenarios.
+
+    strong
+      | For more information, contact Akos Ledeczi at akos.ledeczi@vanderbilt.edu, or Saman Kittani at saman.r.kittani@vanderbilt.edu.
