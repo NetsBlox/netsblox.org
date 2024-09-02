@@ -9,6 +9,7 @@ module.exports = {
             './src/client/main.js'
         ]
     },
+    mode: 'production',
     output: {
         path: path.join(__dirname, '/public/') ,
         filename: '[name].js',
@@ -20,12 +21,9 @@ module.exports = {
             { test: /\.js$/, exclude: /node_modules/, use: [
                 { loader: 'babel-loader',
                     options: {
-                        minified: [true],
-                        compact: [true],
-                        sourceMaps: ['inline'],
-                        'presets': [
-                            'es2015'
-                        ]
+                        minified: true,
+                        compact: true,
+                        sourceMaps: 'inline',
                     }
                 }
             ]},
