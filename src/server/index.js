@@ -175,8 +175,8 @@ app.get('/mobile', (req,res) => renderView(res, 'mobile.pug'));
 app.get('/eclipse', (req,res) => renderView(res, 'eclipse.pug'));
 app.get('/eclipse/help', (req, res) => renderView(res, 'eclipse-help.pug'));
 app.get('/csta18', (req,res) => renderView(res, 'csta18.pug'));
-app.get('/cybersecurity', (req,res) => renderView(res, 'roboscape.pug'));
-app.get('/roboscape', (req,res) => res.redirect('/cybersecurity'));
+app.get('/cybersecurity', (req,res) => renderView(res, 'roboscape/cybersecurity.pug'));
+app.get('/roboscape', (req,res) => renderView(res, 'roboscape.pug'));
 app.get('/phoneiot', (req,res) => renderView(res, 'phoneiot.pug'));
 app.get('/pyblox', (req,res) => renderView(res, 'pyblox.pug'));
 app.get('/beatblox', (req,res) => renderView(res, 'beatblox.pug'));
@@ -194,6 +194,12 @@ app.get('/camp2019/plain-text', (req,res) => renderView(res, 'camp2019/plain-tex
 app.get('/camp2019/brute-force', (req,res) => renderView(res, 'camp2019/brute-force.pug'));
 app.get('/camp2019/insecure-key-exchange', (req,res) => renderView(res, 'camp2019/insecure-key-exchange.pug'));
 app.get('/camp2019/replay-attack', (req,res) => renderView(res, 'camp2019/replay-attack.pug'));
+
+// RoboScape files
+app.get('/roboscape/roboscape', (req,res) => renderView(res, 'roboscape/roboscape.pug'));
+app.get('/roboscape/roboscape-online', (req,res) => renderView(res, 'roboscape/roboscape-online.pug'));
+app.get('/roboscape/curriculum', (req,res) => renderView(res, 'roboscape/curriculum.pug'));
+app.get('/roboscape/cybersecurity', (req,res) => renderView(res, 'roboscape/cybersecurity.pug'));
 
 app.get('/privacy.html', (req, res) => res.redirect(EDITOR_ADDRESS + '/privacy.html'));
 app.get('/emailus', (req, res) => res.redirect('mailto:akos.ledeczi@vanderbilt.edu'));
