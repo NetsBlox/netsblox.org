@@ -2,6 +2,13 @@ extends includes/layout.pug
 block title
   title RoboScape
 block content
+  mixin ytPlayer(url, title)
+    .panel.panel-default.youtube
+      .panel-body
+        .embed-responsive.embed-responsive-16by9
+          iframe(class="embed-responsive-item", allowfullscreen="allowfullscreen", src= url)
+
+  +ytPlayer('https://www.youtube.com/embed/UtcMZVPvnUs')
 
   .container
       h2 RoboScape and RoboScape Online
