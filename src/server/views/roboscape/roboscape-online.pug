@@ -1,0 +1,32 @@
+extends ../includes/layout.pug
+block title
+  title RoboScape Online
+block content
+  mixin ytPlayer(url, title)
+    .panel.panel-default.youtube( style="margin: 20px;")
+      .panel-body
+        .embed-responsive.embed-responsive-16by9
+          iframe(class="embed-responsive-item", allowfullscreen="allowfullscreen", src=url)
+
+  .container
+    h2 RoboScape Online
+    p
+        img(src="/images/roboscape/roboscape_transparent.png", alt="RoboScape Online", width="200", style="float: right; margin-left: 10px;")
+        |  While RoboScape robots can bring many exciting new activities to your classroom, we understand that physical robots are not feasible or accessible for everyone. Although physical robots offer certain advantages, they also come with significant costs—upfront expenses for purchasing, ongoing maintenance, and the need for dedicated storage and activity space. Experimenting with robots in a classroom requires a significant investment, which may be out of reach for many educators.
+        img(src="/images/roboscape/roboscapeonlinecybersec.png", alt="RoboScape Online", width="400", style="float: left; margin-right: 10px;")
+    p
+        | To help get educational robotics into more classrooms, we have introduced RoboScape Online, a robotics simulator specifically for RoboScape robots. Simulated robots are free, take up no space, and enable new experiences beyond what is possible in a physical classroom. Students can now take a robot home with no risk of losing school property, and they can also interact with the same shared virtual space regardless of the physical distance between them.
+    p
+        | RoboScape Online runs in the browser, inside the same NetsBlox interface used to program robots. Not only that, but all RoboScape Online scenarios are made in NetsBlox itself! This adds an additional level of possible project to educational robotics, allowing students to create and share their own interactive environments, further enriching the educational robotics experience. 
+    p
+        | For infomation on getting started with RoboScape Online, see 
+        a(href="https://docs.google.com/presentation/d/1iaUKDoqclTCwOBEVEZ7TKQ_ihas08rta2DIUaMPWPok/edit?usp=sharing", target="_blank") this presentation.
+    br(style="clear: both;")
+    p(style="margin-top: 20px; margin-bottom: 20px;")
+        strong RoboScape Online Publications:
+        ul
+            li
+                a(href="/documents/RoboScape_Online_VLHCC_2021.pdf", target="_blank") Enabling Collaborative Distance Robotics Education for Novice Programmers
+            li
+                a(href="https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2022.1031572/full", target="_blank") Browser-based simulation for novice-friendly classroom robotics
+    +ytPlayer('https://www.youtube.com/embed/9ldd-Gcqv1s')

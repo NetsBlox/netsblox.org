@@ -1,0 +1,29 @@
+extends ../includes/layout.pug
+block title
+  title RoboScape
+block content
+  .container
+    h2 RoboScape
+    img(src="/images/roboscape/Parallax-ActivityBot-360.png", alt="RoboScape", width="450", style="float: right; margin-left: 10px;")
+    p 
+        | NetsBlox’s robotics support is provided through RoboScape. Just like your students can get a map from Google Maps or the weather using NetsBlox’s RPC blocks, they can also send commands to a compatible robot! Currently, firmware and instructions are provided for the Parallax ActivityBot 360.
+    p
+        | While many competing educational robotics platforms focus on students writing code to run directly on a robot, we have chosen a different approach. By exposing robots as just another web service, students’ knowledge from earlier NetsBlox projects is more easily transferable, giving them both a head start on learning to use the robots and helping to demonstrate how programming languages are rarely limited to only one domain. It also allows the robots to be used as a tool for teaching concepts other than programming robots. 
+    p
+        | With the robots as simply parts of a larger distributed computing system, we can also teach lessons on cybersecurity. The messages sent to and from RoboScape robots are intentionally made possible to eavesdrop on in a separate NetsBlox project, with robots also accepting commands from all users. To protect the robots from other students, our curriculum teaches encryption, rate limiting, sequence numbers, and more across a series of hands-on activities and competition-based learning.
+    h4 Required Tools
+    p The minimum requirements for NetsBlox robotics with RoboScape:
+      ul
+        li Computers capable of running an up-to-date Chromium-based browser such as Edge or Google Chrome for students. These include but are not limited to: Chromebooks, MacBooks, laptops, and personal computers running macOS, Windows, or Linux.
+        li RoboScape supported robots: Parallax ActivityBot 360 
+          a(href="https://docs.google.com/document/d/1wudv0uNGX6zZxWaxV_bao0XyJYQgYNlu1Z-zYzvuRPA/edit?usp=sharing" target="_blank") (Assembly Instructions)
+        li A wireless access point (WiFi) with functional Internet connection or for more advanced setups a local NetsBlox server.
+
+    p
+        strong RoboScape Publications:
+        ul
+            li
+                a(href="/documents/3287324.3287450.pdf", target="_blank") Teaching Cybersecurity with Networked Robots
+            li
+                a(href="/documents/3328778.3366878.pdf", target="_blank") A Hands-On Cybersecurity Curriculum Using a Robotics Platform
+            

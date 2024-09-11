@@ -1,0 +1,81 @@
+extends ../includes/layout.pug
+block title
+  title Cybersecurity Education with RoboScape
+block content
+  mixin ytPlayer(url, title)
+    .panel.panel-default.youtube
+      .panel-body
+        .embed-responsive.embed-responsive-16by9
+          iframe(class="embed-responsive-item", allowfullscreen="allowfullscreen", src= url)
+
+  .container
+      h2 Cybersecurity Education with RoboScape
+      p
+        | RoboScape is a collaborative, networked robotics environment that makes
+        | key ideas in computer science accessible to groups of learners in
+        | informal learning spaces and K-12 classrooms. RoboScape is built on top
+        | of NetsBlox, an open-source, networked, visual programming environment
+        | based on Snap! that is specifically designed to introduce students to
+        | distributed computation and computer networking.
+      p
+        | RoboScape provides a twist on the state of the art of robotics learning platforms. First, a
+        | user's program controlling the robot runs in the browser and not on the
+        | robot. There is no need to download the program to the robot and hence,
+        | development and debugging become much easier. Second, the wireless
+        | communication between a student's program and the robot can be overheard
+        | by the programs of the other students. This makes cybersecurity an
+        | immediate need that students realize and can work to address.
+
+      +ytPlayer('https://www.youtube.com/embed/UtcMZVPvnUs')
+
+      p
+        | We have designed a cybersecurity summer camp for high school students.
+        | Below you can find an overview of the curriculum.
+
+      h3 Overview of the Curriculum
+
+      p The curriculum does not assume any prior programming knowledge and targets high schoolers. It starts off by teaching basic programming in the NetsBlox and teaches new cybersecurity concepts, common and fundamental attacks, and ways to defend against them.
+        | At the end of each day the students put what they have learned so far to participate in robotics challenges while defending against cybersecurity attacks from their classmates.
+
+      h4 Units
+      ol
+        li
+          a(href="/camp2019/netsblox") NetsBlox Programming: Getting familiar with visual block-based programming. Learn about RPCs and message passing.
+        li
+          a(href="/camp2019/roboscape") General Robotics with RoboScape: Robot programming with Roboscape.
+        li
+          a(href="/camp2019/simple-attacks") Attacks & Attack Detection: Examples of attacks in real world and in Roboscape and how to detect them.
+        li
+          a(href="/camp2019/denial-of-service") Denial of Service: Dealing with an unresponsive robot under attack with a lot of illegitimate or legitimate requests.
+        li
+          a(href="/camp2019/plain-text") Encryption (Plain Text Issue): The problem with having no authentication and plain text communication.
+        li
+          a(href="/camp2019/brute-force") Key Cracking (Brute Force Attack): Weak versus strong encryption and potential problems.
+        li
+          a(href="/camp2019/insecure-key-exchange") Insecure Key Exchange: Challenges of transmitting a shared key for encryption
+        li 
+          a(href="/camp2019/replay-attack") Replay Attack
+
+
+      h4 Required Tools
+      p The minimum requirements for running this camp:
+      ul
+        li Computers capable of running an up-to-date chromium based browser such as Chromium or Google Chrome for students. These include but are not limited to: Chromebooks, MacBooks, laptops, and personal computers running Mac OS, Windows, or Linux.
+        li RoboScape supported robots: Parallax ActivityBot 360 
+          a(href="https://docs.google.com/document/d/1wudv0uNGX6zZxWaxV_bao0XyJYQgYNlu1Z-zYzvuRPA/edit?usp=sharing" target="_blank") (Assembly Instructions)
+        li A wireless access point (WiFi) with functional Internet connection or for more advanced setups a local NetsBlox server.
+
+      h4 References
+      ul
+        li "Teaching Cybersecurity with Networked Robots", SIGCSE - ACM 2019
+          a(href="https://dl.acm.org/citation.cfm?id=3287450")  link
+        li "A visual programming environment for introducing distributed computing to secondary education", JPDC - Elsevier 2018
+          a(href="https://www.sciencedirect.com/science/article/pii/S0743731518300996")  link
+
+      p All the lesson plans and
+        |  other material associated with the camp can be downloaded
+        a(href="/protected-assets/index.html" target="_blank")  here.
+        |  Please
+        a(href="mailto:akos.ledeczi@vanderbilt.edu?subject=RoboScape Camp Access")  email us
+        |  to get access to camp materials.
+
