@@ -6,6 +6,11 @@ block content
     iframe(allowfullscreen="1" width=width height=height src='https://www.youtube.com/embed/'+id)
 
   .container
+    .panel.panel-default.youtube
+      .panel-body
+        .embed-responsive.embed-responsive-16by9
+          +ytPlayer('WcL1ppEsiyE', 1000, 562)
+
     div(style='text-align: center')
       img(src='/images/beatblox/logo.png' style='width: 150px; margin: 25px' alt='BeatBlox Logo')
 
